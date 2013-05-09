@@ -12,6 +12,21 @@ The source code is available for download from [GitHub](https://github.com/rrana
 
 * [List.Root](#List.Root)
 * [addChild](#addChild)
+* [firstChild](#firstChild)
+* [lastChild](#lastChild)
+* [construct](#construct)
+* [insertFirstChild](#insertFirstChild)
+* [insertChild](#insertChild)
+* [Id](#Id)
+* [spliceIn](#spliceIn)
+* [spliceOut](#spliceOut)
+* [nextSibling](#nextSibling)
+* [previousSibling](#previousSibling)
+* [firstSibling](#firstSibling)
+* [lastSibling](#lastSibling)
+* [siblings](#siblings)
+* [parent](#parent)
+* [grandParent](#grandParent)
 
 <a name="List.Root" />
 ### List.Root(object)
@@ -107,8 +122,8 @@ __Result:__
 
 ![tree 5](https://raw.github.com/michael0401/Pictures/master/tree5.png)
 
-<a name="id" />
-### id(argument)
+<a name="Id" />
+### Id(argument)
 
 If the argument is empty, return the id of the given node. If the argument is not empty, traverse down from the given node and find the first node with the id matching the argument.
 
@@ -116,7 +131,7 @@ __Alias:__ find
 
 __Example:__
 
-    L.id('b').id
+    L.Id('b').id
     
 __Result:__
 
@@ -231,7 +246,7 @@ __Result:__
 <a name="grandParent" />
 ### grandParent()
 
-Return the parent of the given node.
+Return the grandparent of the given node.
 
 __Example:__
 
