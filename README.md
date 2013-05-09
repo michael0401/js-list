@@ -24,7 +24,7 @@ __Example:__
     
 __Result:__
 
-![tree 1]()
+![tree 1](https://raw.github.com/michael0401/Pictures/master/tree1.png)
 
 <a name="addChild" />
 ### addChild(object)
@@ -39,7 +39,7 @@ __Example:__
     
 __Result:__
 
-![tree 2]()
+![tree 2](https://raw.github.com/michael0401/Pictures/master/tree2.png)
 
 <a name="firstChild" />
 ### firstChild()
@@ -79,7 +79,7 @@ __Example:__
     
 __Result:__
 
-![tree 3]()
+![tree 3](https://raw.github.com/michael0401/Pictures/master/tree3.png)
 
 <a name="insertFirstChild" />
 ### insertFirstChild(newNode)
@@ -92,7 +92,7 @@ __Example:__
     
 __Result:__
 
-![tree 4]()
+![tree 4](https://raw.github.com/michael0401/Pictures/master/tree4.png)
 
 <a name="insertChild" />
 ### insertChild(newNode)
@@ -105,7 +105,7 @@ __Example:__
     
 __Result:__
 
-![tree 5]()
+![tree 5](https://raw.github.com/michael0401/Pictures/master/tree5.png)
 
 <a name="id" />
 ### id(argument)
@@ -133,7 +133,7 @@ __Example:__
     
 __Result:__
 
-![tree 6]()
+![tree 6](https://raw.github.com/michael0401/Pictures/master/tree6.png)
  
 <a name="spliceOut" />
 ### spliceOut()
@@ -148,7 +148,7 @@ __Result:__
 
     head
 
-![tree 7]()
+![tree 7](https://raw.github.com/michael0401/Pictures/master/tree7.png)
 
 <a name="nextSibling" />
 ### nextSibling()
@@ -241,5 +241,5 @@ __Example:__
 __Result:__
 
     root
-![tree 8]()
+![tree 8](https://raw.github.com/michael0401/Pictures/master/tree8.png)
   
