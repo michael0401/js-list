@@ -1,0 +1,347 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Js-list.js by michael0401</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Js-list.js</h1>
+        <p class="header">Extensible list functions.</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/michael0401/js-list/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/michael0401/js-list/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/michael0401/js-list">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/michael0401">michael0401</a></p>
+
+
+      </header>
+      <section>
+        <h1>JS-List.js</h1>
+
+<p>js-list.js is a utility module which provide functions for operating with linked list. It can be used both in the <a href="http://nodejs.org">node.js</a> and browser.</p>
+
+<h2>Download</h2>
+
+<p>The source code is available for download from <a href="https://github.com/rranauro/js-list">GitHub</a>. Besides that, you can also install using Node Package Manager (<a href="https://npmjs.org">npm</a>):</p>
+
+<pre><code>npm install js-list
+</code></pre>
+
+<h2>Documentation</h2>
+
+<ul>
+<li><a href="#List.Root">List.Root</a></li>
+<li><a href="#addChild">addChild</a></li>
+<li><a href="#firstChild">firstChild</a></li>
+<li><a href="#lastChild">lastChild</a></li>
+<li><a href="#construct">construct</a></li>
+<li><a href="#insertFirstChild">insertFirstChild</a></li>
+<li><a href="#insertChild">insertChild</a></li>
+<li><a href="#Id">Id</a></li>
+<li><a href="#spliceIn">spliceIn</a></li>
+<li><a href="#spliceOut">spliceOut</a></li>
+<li><a href="#nextSibling">nextSibling</a></li>
+<li><a href="#previousSibling">previousSibling</a></li>
+<li><a href="#firstSibling">firstSibling</a></li>
+<li><a href="#lastSibling">lastSibling</a></li>
+<li><a href="#siblings">siblings</a></li>
+<li><a href="#parent">parent</a></li>
+<li><a href="#grandParent">grandParent</a></li>
+</ul><p><a name="List.Root"></a></p>
+
+<h3>List.Root(object)</h3>
+
+<p>Initialize and return a root with the given values object.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre><code>var L = new List.Root({'id':'root'})
+</code></pre>
+
+<p><strong>Result:</strong></p>
+
+<p><img src="https://raw.github.com/michael0401/Pictures/master/tree1.png" alt="tree 1"></p>
+
+<p><a name="addChild"></a></p>
+
+<h3>addChild(object)</h3>
+
+<p>Build a node with given values object and add to the given node as a child.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre><code>L.addChild({'id': 'a'}).Id('a');
+L.addChild({'id': 'b'}).Id('b');
+L.addChild({'id': 'c'}).Id('c');
+</code></pre>
+
+<p><strong>Result:</strong></p>
+
+<p><img src="https://raw.github.com/michael0401/Pictures/master/tree2.png" alt="tree 2"></p>
+
+<p><a name="firstChild"></a></p>
+
+<h3>firstChild()</h3>
+
+<p>Return the first child node of the given node.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre><code>L.firstChild().id
+</code></pre>
+
+<p><strong>Result:</strong></p>
+
+<pre><code>a
+</code></pre>
+
+<p><a name="lastChild"></a></p>
+
+<h3>lastChild()</h3>
+
+<p>Return the last child node of the given node.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre><code>L.lastChild().id
+</code></pre>
+
+<p><strong>Result:</strong></p>
+
+<pre><code>c
+</code></pre>
+
+<p><a name="construct"></a></p>
+
+<h3>construct(object)</h3>
+
+<p>Build a node with given values object.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre><code>var newFirstChild = L.construct({'id': 'head'});
+var newLastChild = L.construct({'id': 'tail'});
+</code></pre>
+
+<p><strong>Result:</strong></p>
+
+<p><img src="https://raw.github.com/michael0401/Pictures/master/tree3.png" alt="tree 3"></p>
+
+<p><a name="insertFirstChild"></a></p>
+
+<h3>insertFirstChild(newNode)</h3>
+
+<p>Add a new node to the first child position of the given node.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre><code>L.insertFirstChild(newFirstChild)
+</code></pre>
+
+<p><strong>Result:</strong></p>
+
+<p><img src="https://raw.github.com/michael0401/Pictures/master/tree4.png" alt="tree 4"></p>
+
+<p><a name="insertChild"></a></p>
+
+<h3>insertChild(newNode)</h3>
+
+<p>Add a new node to the last child position of the given node.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre><code>L.insertChild(newLastChild)
+</code></pre>
+
+<p><strong>Result:</strong></p>
+
+<p><img src="https://raw.github.com/michael0401/Pictures/master/tree5.png" alt="tree 5"></p>
+
+<p><a name="Id"></a></p>
+
+<h3>Id(argument)</h3>
+
+<p>If the argument is empty, return the id of the given node. If the argument is not empty, traverse down from the given node and find the first node with the id matching the argument.</p>
+
+<p><strong>Alias:</strong> find</p>
+
+<p><strong>Example:</strong></p>
+
+<pre><code>L.Id('b').id
+</code></pre>
+
+<p><strong>Result:</strong></p>
+
+<pre><code>b
+</code></pre>
+
+<p><a name="spliceIn"></a></p>
+
+<h3>spliceIn(newNode)</h3>
+
+<p>Add a new node to the next sibling position of the given node.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre><code>L.Id('c').spliceIn(L.construct({'id': 'd' }))
+</code></pre>
+
+<p><strong>Result:</strong></p>
+
+<p><img src="https://raw.github.com/michael0401/Pictures/master/tree6.png" alt="tree 6"></p>
+
+<p><a name="spliceOut"></a></p>
+
+<h3>spliceOut()</h3>
+
+<p>Delete the given node from the siblings. If the given node is the head of the sibling list, return the second node. If the give node is not the head of the sibling list, return the one before the given node.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre><code>L.Id('a').spliceOut().id
+</code></pre>
+
+<p><strong>Result:</strong></p>
+
+<pre><code>head
+</code></pre>
+
+<p><img src="https://raw.github.com/michael0401/Pictures/master/tree7.png" alt="tree 7"></p>
+
+<p><a name="nextSibling"></a></p>
+
+<h3>nextSibling()</h3>
+
+<p>Return the next sibling of the given node.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre><code>L.Id('head').nextSibling().id
+</code></pre>
+
+<p><strong>Result:</strong></p>
+
+<pre><code>b
+</code></pre>
+
+<p><a name="previousSibling"></a></p>
+
+<h3>previousSibling()</h3>
+
+<p>Return the previous sibling of the given node.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre><code>L.Id('b').previousSibling().id
+</code></pre>
+
+<p><strong>Result:</strong></p>
+
+<pre><code>head
+</code></pre>
+
+<p><a name="firstSibling"></a></p>
+
+<h3>firstSibling()</h3>
+
+<p>Return the first sibling of the given node.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre><code>L.Id('tail').firstSibling().id
+</code></pre>
+
+<p><strong>Result:</strong></p>
+
+<pre><code>head
+</code></pre>
+
+<p><a name="lastSibling"></a></p>
+
+<h3>lastSibling()</h3>
+
+<p>Return the last sibling of the given node.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre><code>L.Id('b').lastSibling().id
+</code></pre>
+
+<p><strong>Result:</strong></p>
+
+<pre><code>tail
+</code></pre>
+
+<p><a name="siblings"></a></p>
+
+<h3>siblings()</h3>
+
+<p>Return the siblings of the given node as an array.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre><code>L.Id('b').siblings()[0].id
+</code></pre>
+
+<p><strong>Result:</strong></p>
+
+<pre><code>head
+</code></pre>
+
+<p><a name="parent"></a></p>
+
+<h3>parent()</h3>
+
+<p>Return the parent of the given node.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre><code>L.Id('b').parent().id
+</code></pre>
+
+<p><strong>Result:</strong></p>
+
+<pre><code>root
+</code></pre>
+
+<p><a name="grandParent"></a></p>
+
+<h3>grandParent()</h3>
+
+<p>Return the grandparent of the given node.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre><code>L.Id('b').addChild({'id': 'grandchild'});
+L.Id('grandchild').grandParent().id
+</code></pre>
+
+<p><strong>Result:</strong></p>
+
+<pre><code>root
+</code></pre>
+
+<p><img src="https://raw.github.com/michael0401/Pictures/master/tree8.png" alt="tree 8"></p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
