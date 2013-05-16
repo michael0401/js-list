@@ -1,6 +1,6 @@
-#JS-List.js
+#js-tree.js
 
-js-list.js is a utility module which provide functions for operating with linked list. It can be used both in the [node.js](http://nodejs.org) and browser.
+js-tree.js is a utility module which provide functions for operating with linked list. It can be used both in the [node.js](http://nodejs.org) and browser.
 
 ##Download
 
