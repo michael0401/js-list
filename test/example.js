@@ -1,9 +1,9 @@
-require('../js-list');
 require('../index');
+_ = require('underscore');
 var test = require('tape');
 
 test('js-list', function(t) {	
-	var L = new List.Root()
+	var L = UTIL.tree()
 	, item1 = L.addChild({'id': 'a'}).Id('a')
 	, item2 = L.addChild({'id': 'b'}).Id('b')
 	, item3 = L.addChild({'id': 'three'}).Id('three')
@@ -23,7 +23,7 @@ test('js-list', function(t) {
 	// lastChild
 	t.equal(item7 === L.lastChild(), true);
 	// insertFirstChild
-	L.insertFirstChild(L.construct({'id': 'new-insert'}));
+	L.insertFirstChild(UTIL.tree({'id': 'new-insert'}));
 	t.equal(L.firstChild().id, 'new-insert');
 	
 	// previousSibling, nextSibling
@@ -47,8 +47,8 @@ test('js-list', function(t) {
 	t.equal(item1.lastSibling().id==='seven', item1.firstSibling().id==='new-insert');
 	
 	// spliceIn
-	var anotheritem = L.construct({'id': 'another-item' });
-	L.Id('three').spliceIn(L.construct({'id': 'another-item' }));
+	var anotheritem = UTIL.tree({'id': 'another-item' });
+	L.Id('three').spliceIn(UTIL.tree({'id': 'another-item' }));
 	t.equal(L.Id('another-item').nextSibling().id, 'four');
 	// spliceOut middle case
 	item4.spliceOut();
@@ -59,7 +59,7 @@ test('js-list', function(t) {
 	t.equal(L.lastChild().spliceOut().id, 'six');
 	
 	// spliceIn at the end
-	t.equal(L.Id('six').spliceIn(L.construct({'id': 'tail'})).id, 'tail');
+	t.equal(L.Id('six').spliceIn(UTIL.tree({'id': 'tail'})).id, 'tail');
 	L.Id('tail').addChild({'id': 'first-descendent'});
 	L.Id('first-descendent').addChild({'id': 'second-descendent'});
 	t.equal(L.Id('second-descendent').grandParent().id, 'tail');

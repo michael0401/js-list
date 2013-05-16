@@ -4,15 +4,8 @@
 
 (function(global) {
 	"use strict";
-	var List;
 	
-	if (typeof exports !== 'undefined') {
-		List = exports;
-	} else {
-		List = global.List = {};
-	}
-	
-	List.Root = function(obj) {
+	var Tree = function(obj) {
 		var items;
 		
 		for (items in obj) {
@@ -26,23 +19,20 @@
 		return this;
 	};
 	
-	List.Root.prototype.construct = function (obj) {
-		return new List.Root(obj);
-	};
 	
-	List.Root.prototype.addChild = function (obj) {
-		return this.insertChild(this.construct(obj));
+	Tree.prototype.addChild = function (obj) {
+		return this.insertChild(new Tree(obj));
 	};
 
-	List.Root.prototype.firstChild = function () {
+	Tree.prototype.firstChild = function () {
 		return this.child;
 	};
 
-	List.Root.prototype.nextSibling = function () {
+	Tree.prototype.nextSibling = function () {
 		return this.sibling;
 	};
-	List.Root.prototype.lastSibling = function () {
-		var sib = (this && this.sibling || this)
+	Tree.prototype.lastSibling = function () {
+		var sib = ((this && this.sibling) || this)
 		, LIMIT = 1000000
 		, counter = 0;
 		
@@ -50,31 +40,31 @@
 			sib = sib.sibling;
 		}
 		if (counter === LIMIT) {
-			throw '[ List.Root.lastSibling ] - cycle encountered.';
+			throw new Error('cycle encountered');
 		}
 		return sib;
 	};
-	List.Root.prototype.lastChild = function () {
+	Tree.prototype.lastChild = function () {
 		return this.firstChild() && this.firstChild().lastSibling();
 	};
-	List.Root.prototype.parent = function () {
+	Tree.prototype.parent = function () {
 		return this.owner;
 	};
-	List.Root.prototype.firstSibling = function () {
+	Tree.prototype.firstSibling = function () {
 		return this.parent() && this.parent().firstChild();		
 	};
-	List.Root.prototype.previousSibling = function () {
+	Tree.prototype.previousSibling = function () {
 		var predecessor = this.firstSibling();
 		while (predecessor && predecessor.sibling && predecessor.sibling !== this) {
 			predecessor = predecessor.sibling;
 		}
 		return predecessor;
 	};
-	List.Root.prototype.grandParent = function () {
+	Tree.prototype.grandParent = function () {
 		return (this.parent() && this.parent().parent());
 	};
 	// What it does: fetches the last sibling from the objects children and inserts child at the end.
-	List.Root.prototype.insertChild = function (child) {
+	Tree.prototype.insertChild = function (child) {
 		var lastChild = this.lastChild();
 
 		// case 1: no first child, just add the child
@@ -95,7 +85,7 @@
 	};
 	
 	// insert an element as the first child of a parent; previous first child is sibling of new
-	List.Root.prototype.insertFirstChild = function (child) {
+	Tree.prototype.insertFirstChild = function (child) {
 		if (child) {
 			if (this && this.child) {
 				child.sibling = this.child;
@@ -109,7 +99,7 @@
 	};
 
 	// insert an element as a sibling of this element
-	List.Root.prototype.spliceIn = function (sib) {
+	Tree.prototype.spliceIn = function (sib) {
 		if (sib) {
 			sib.sibling = this.sibling;
 			this.sibling = sib;
@@ -118,8 +108,8 @@
 		return sib;
 	};
 
-	// remove a sibling from a list of siblings
-	List.Root.prototype.spliceOut = function () {
+	// remove a sibling from a Tree of siblings
+	Tree.prototype.spliceOut = function () {
 		var location = this && this.parent() && this.parent().firstChild()
 		, owner = this && this.parent();
 
@@ -146,7 +136,7 @@
 		return location;
 	};
 
-	List.Root.prototype.siblings = function (it) {
+	Tree.prototype.siblings = function (it) {
 		var result = [] 
 		, next = (this && this.owner && this.owner.child)
 		, iterator = (((typeof it === 'function') && it) || function () { return true; });
@@ -160,7 +150,7 @@
 		return result;
 	};	
 
-	List.Root.prototype.each = function () {
+	Tree.prototype.each = function () {
 		var result = [];
 
 		this.walk(function() {
@@ -169,9 +159,9 @@
 		return result.slice(1);
 	};
 
-	List.Root.prototype.walk = function(fn) {			
+	Tree.prototype.walk = function(fn) {			
 		if (typeof fn !== 'function') {
-			throw 'you must supply a function to the list walk method.';				
+			throw 'you must supply a function to the Tree walk method.';				
 		}
 		// visit this node
 		fn.call(this, this);
@@ -184,11 +174,11 @@
 		}
 	};
 
-	List.Root.prototype.find = function(id, fn) {
+	Tree.prototype.find = function(id, fn) {
 		var local = this
 			, found;
 
-		// the empty argument list returns the id of self	
+		// the empty argument Tree returns the id of self	
 		if (arguments.length === 0) {
 			return this.id;
 		}
@@ -204,7 +194,23 @@
 		});
 		return found;
 	};
-	List.Root.prototype.Id = List.Root.prototype.find;
+	Tree.prototype.Id = Tree.prototype.find;
+	
+	var tree = function (o) {
+		return new Tree(o);
+	};
+
+	if (typeof exports !== 'undefined') {
+		if (typeof module !== 'undefined' && module.exports) {
+	      exports = module.exports = tree;
+	    }
+		exports.tree = tree;
+	} else {
+		if (typeof global.UTIL === 'undefined') {
+			global.UTIL = {};
+		}
+		global.UTIL.tree = tree;
+	}
 	
 }(this));
 

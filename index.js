@@ -1,2 +1,2 @@
-_ = require('underscore');
-List = require('./js-list');
+UTIL = {};
+UTIL.tree = require('./js-tree');
