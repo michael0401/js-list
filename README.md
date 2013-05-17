@@ -1,14 +1,14 @@
 #js-tree.js
 
+##Overview
+
 js-tree.js is a utility module which provide functions for operating with linked list. It can be used both in the [node.js](http://nodejs.org) and browser.
 
-##Download
+##Example
 
-The source code is available for download from [GitHub](https://github.com/rranauro/js-list). Besides that, you can also install using Node Package Manager ([npm](https://npmjs.org)):
+[Link]()
 
-    npm install js-list
-
-##Documentation
+##Methods
 
 * [List.Root](#List.Root)
 * [addChild](#addChild)
@@ -258,3 +258,10 @@ __Result:__
     root
 ![tree 8](https://raw.github.com/michael0401/Pictures/master/tree8.png)
   
+##Install
+
+The source code is available for download from [GitHub](https://github.com/rranauro/js-tree). Besides that, you can also install using Node Package Manager ([npm](https://npmjs.org)):
+
+    npm install js-tree
+
+##License
